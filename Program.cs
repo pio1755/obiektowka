@@ -35,7 +35,18 @@ namespace ConsoleApp1
             Console.WriteLine("Marka samochodu: "+getCarMarka()+", "+"Rok produkcji: "+getCarRok());
 
         }
+        private double ObliczSpalanie(double dlugoscTrasy)
+        {
+            double spalanie = dlugoscTrasy * this.srednieSpalanie;
 
+            return spalanie;
+        }
+        public double KosztPrzejazdu(double dlugoscTrasy,double CenaPaliwa)
+        {
+            double KosztPrzejazdu = OblczSpalanie(dlugoscTrasy) * CenaPaliwa;
+
+            return KosztPrzejazdu;
+        }
 
 
     }
