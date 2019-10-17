@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ConsoleApp1
-{ 
+{
 
     public class Car
     {
@@ -15,10 +15,14 @@ namespace ConsoleApp1
         private int iloscDrzwi;
         private int pojemnoscSilnika;
         public int srednieSpalanie;
-        public Car(string marka, int rok)
+        public Car(string marka, int rok, String model, int iloscDrzwi, int pojemnoscSilnika, int srednieSpalanie)
         {
             this.marka = marka;
             this.rok = rok;
+            this.model = model;
+            this.iloscDrzwi = iloscDrzwi;
+            this.pojemnoscSilnika = pojemnoscSilnika;
+            this.srednieSpalanie = srednieSpalanie;
         }
         public String getCarMarka()
         {
@@ -32,7 +36,7 @@ namespace ConsoleApp1
         }
         public void wypisz()
         {
-            Console.WriteLine("Marka samochodu: "+getCarMarka()+", "+"Rok produkcji: "+getCarRok());
+            Console.WriteLine("Marka samochodu: " + getCarMarka() + ", " + "Rok produkcji: " + getCarRok());
 
         }
         private double ObliczSpalanie(double dlugoscTrasy)
@@ -41,9 +45,9 @@ namespace ConsoleApp1
 
             return spalanie;
         }
-        public double KosztPrzejazdu(double dlugoscTrasy,double CenaPaliwa)
+        public double KosztPrzejazdu(double dlugoscTrasy, double CenaPaliwa)
         {
-            double KosztPrzejazdu = OblczSpalanie(dlugoscTrasy) * CenaPaliwa;
+            double KosztPrzejazdu = ObliczSpalanie(dlugoscTrasy) * CenaPaliwa;
 
             return KosztPrzejazdu;
         }
@@ -57,18 +61,20 @@ namespace ConsoleApp1
 
             string carName = "Mój samochód";
             Console.WriteLine(carName);
-            
 
-            Car car1 = new Car("Ford", 2015);
+
+            Car car1 = new Car("Ford", 2015,"Jakis",5,2,6);
 
             car1.wypisz();
 
 
-            Car car2 = new Car("Mustang", 2019);
+            Car car2 = new Car("Mustang", 2019,"xdd",3,5,10);
 
             car2.wypisz();
 
-           // car1 = car2;
+            Console.WriteLine(car2.KosztPrzejazdu(2,7));
+
+            // car1 = car2;
             //przy wypisywaniu zarowno car1 jak i car2 wypisuje się car2.
             //Jest to spowodowane tym, że do car1 został przypisany adres obiektu car2 (takzwane przypisywanie zmiennych referencyjnych)
 
@@ -79,8 +85,9 @@ namespace ConsoleApp1
 
         }
 
-    
+
 
     }
 
 }
+
