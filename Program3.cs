@@ -53,4 +53,6 @@ class Student:Osoba
         this.numerAlbumu = numerAlbumu;
     }
 
+    void WypiszInfo()
+    Console.WriteLine("Imie "+this.imie+" Nazwisko: "+this.Nazwisko+" Aktualny wiek: "+ObliczWiek()+"Numer Grupy: "+this.numerGrupy+" numer Albumu: "+this.numerAlbumu);
 }
