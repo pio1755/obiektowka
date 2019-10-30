@@ -1,0 +1,140 @@
+using System;
+
+namespace ConsoleApp5
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Pies okon1 = new Pies("okon1",15,17);
+            Pies okon2 = new Pies("okon2", 17, 6);
+            Wilk okon3 = new Wilk("okon3", 23, 16);
+            Wilk okon4 = new Wilk("okon4", 14, 17);
+            Rekin okon5 = new Rekin("okon5", 109, 59);
+            Rekin okon6 = new Rekin("okon6", 150, 67);
+            Orzel okon7 = new Orzel("okon7", 5, 5);
+            Orzel okon8 = new Orzel("okon8", 9, 6);
+            Krokodyl okon9 = new Krokodyl("okon9", 44, 12);
+            Krokodyl okon10 = new Krokodyl("okon10", 17, 13);
+
+            //podlawowe clone() tworzy obiekt i robi referencje na poziomie tej klasy a gleboka kopia sprawdza cale drzewo i tworzy kopie kazdego elementu ktore sie w tej strukturze znajduje(przydaje sie przy dziedziczeniu na przyklad czy przy tworzeniu roznych obiektow w obiektach
+
+
+            Console.Read();
+        }
+    }
+    class Zwierze : zadania
+    {
+
+        public void JakSiePoruszam()
+        {
+            Console.WriteLine("Poruszam sie na 4 lapach");
+        }
+        public void CoJem()
+        {
+            Console.WriteLine("Karme dla zwierzat");
+        }
+
+
+    }
+    class Pies:Zwierze
+    {
+        public Pies(String imie, int waga, int rozmiar)
+        {
+            this.imie = imie;
+            this.waga = waga;
+            this.rozmiar = rozmiar;
+        }
+        String imie;
+        int waga;
+        int rozmiar;
+
+
+    }
+    class Wilk:Zwierze
+    {
+
+        String imie;
+        int waga;
+        int rozmiar;
+
+        public Wilk(String imie, int waga, int rozmiar)
+        {
+            this.imie = imie;
+            this.waga = waga;
+            this.rozmiar = rozmiar;
+        }
+
+        public new void CoJem()
+        {
+            Console.WriteLine("Co znajde w lesie");
+        }
+
+    }
+    class Rekin:Zwierze
+    {
+        String imie;
+        int waga;
+        int rozmiar;
+
+        public Rekin(String imie, int waga, int rozmiar)
+        {
+            this.imie = imie;
+            this.waga = waga;
+            this.rozmiar = rozmiar;
+        }
+        public new void JakSiePoruszam()
+        {
+            Console.WriteLine("Poruszam sie plywajac");
+        }
+        public new void CoJem()
+        {
+            Console.WriteLine("mieso, mieso, wiecej miesa");
+        }
+
+    }
+    class Orzel:Zwierze
+    {
+        String imie;
+        int waga;
+        int rozmiar;
+        public Orzel(String imie, int waga, int rozmiar)
+        {
+            this.imie = imie;
+            this.waga = waga;
+            this.rozmiar = rozmiar;
+        }
+        public new void JakSiePoruszam()
+        {
+            Console.WriteLine("Poruszam sie na skrzydlach");
+        }
+        public new void CoJem()
+        {
+            Console.WriteLine("Karme dla zwierzat");
+        }
+
+    }
+    class Krokodyl:Zwierze
+    {
+        String imie;
+        int waga;
+        int rozmiar;
+        public Krokodyl(String imie, int waga, int rozmiar)
+        {
+            this.imie = imie;
+            this.waga = waga;
+            this.rozmiar = rozmiar;
+        }
+        public new void CoJem()
+        {
+            Console.WriteLine("Bagienne zwierzeta");
+        }
+    }
+
+    interface zadania
+    {
+         void JakSiePoruszam();
+
+         void CoJem();
+    }
+}
