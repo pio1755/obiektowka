@@ -1,0 +1,83 @@
+using System;
+
+namespace ConsoleApp4
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Test obiekt1 = new Test();
+            Test obiekt2 = new Test();
+            Test obiekt3 = new Test();
+
+            obiekt1.liczba = 255;
+            obiekt2 = obiekt1;
+            obiekt3 = obiekt1.GlebokaKopia();
+            obiekt1.liczba = 347;
+
+            Console.WriteLine(obiekt1.liczba);
+            Console.WriteLine(obiekt2.liczba);
+            Console.WriteLine(obiekt3.liczba);
+
+            obiekt1.liczba = 255;
+            obiekt1.poleTestowe.slowo = "słowo";
+            obiekt1.liczba = 347;
+            obiekt1.poleTestowe.slowo = "kaczka";
+
+            Console.WriteLine(obiekt1.poleTestowe.ToString());
+            Console.WriteLine(obiekt2.poleTestowe.ToString());
+            Console.WriteLine(obiekt3.poleTestowe.ToString());
+
+            
+
+            Console.Read();
+        }
+    }
+    class Test:IClonable
+    {
+        public int liczba;
+        public Test2 poleTestowe;
+
+        public Test()
+        {
+            this.poleTestowe = new Test2();
+
+        }
+
+        public Object Clone()
+        {
+            return MemberwiseClone();
+        }
+        public Test GlebokaKopia() 
+        {
+            Test tempTest = new Test();
+            tempTest.liczba = this.liczba;
+            tempTest.poleTestowe.slowo = this.poleTestowe.slowo;
+            return tempTest;
+        }
+
+
+
+
+
+
+
+    }
+    interface IClonable
+    {
+
+
+    }
+    class Test2
+    {
+        public String slowo;
+        public override String ToString()
+        {
+            return slowo;
+
+
+        }
+
+
+    }
+}
