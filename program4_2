@@ -21,7 +21,7 @@ namespace ConsoleApp4
 
             obiekt1.liczba = 255;
             obiekt1.poleTestowe.slowo = "słowo";
-            obiekt1.liczba = 347;
+            obiekt2.liczba = 347;
             obiekt1.poleTestowe.slowo = "kaczka";
 
             Console.WriteLine(obiekt1.poleTestowe.ToString());
