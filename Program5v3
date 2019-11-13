@@ -1,0 +1,72 @@
+using System;
+using System.Collections.Generic;
+
+namespace lista6
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Pracownik p = new Programista();
+            p.dodaj(p);
+            Pracownik n = new Ksiegowy();
+            p.dodaj(n);
+            Pracownik k = new Projektant();
+            p.dodaj(k);
+            p.wypisz();
+
+
+            Console.ReadLine();
+
+        }
+    }
+    public class Pracownik
+    {
+        public List<Pracownik> pracownicy = new List<Pracownik>();
+
+        public virtual void Pracuj()
+        {
+            Console.WriteLine("Pracownik pracuje");
+        }
+        public void dodaj(Pracownik on)
+        {
+            pracownicy.Add(on);
+        }
+        public void wypisz()
+        {
+            foreach (Pracownik x in pracownicy)
+                x.Pracuj();
+        }
+
+    }
+    public class Programista : Pracownik
+    {
+        public override void Pracuj()
+        {
+            base.Pracuj();
+            Console.WriteLine("Programista pracuje");
+
+        }
+
+    }
+    public class Projektant : Pracownik
+    {
+        public override void Pracuj()
+        {
+            base.Pracuj();
+            Console.WriteLine("Projektant pracuje");
+
+        }
+
+    }
+    public class Ksiegowy : Pracownik
+    {
+        public override void Pracuj()
+        {
+            base.Pracuj();
+            Console.WriteLine("Ksiegowy pracuje");
+
+        }
+
+    }
+}
