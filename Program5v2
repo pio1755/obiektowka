@@ -33,5 +33,5 @@ namespace lista6
             Console.WriteLine("Pole wynosi: " + 1 / 2 * a * b);
         }
 
-    }
+    } 
 }//zrogione na szybko bez obj, mozna poprawic na mozliwosc dodawania zmiennych
