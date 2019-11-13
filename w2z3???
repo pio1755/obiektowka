@@ -7,7 +7,9 @@ namespace ConsoleApp7
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            KierownikProjektu Jan = new KierownikProjektu("Jan", "Marecki", "KierownikProjektu", 5555);
+            Projekt pierwszy = new Projekt("xyz",Jan);
+
         }
     }
     public abstract class Pracownik
@@ -16,24 +18,50 @@ namespace ConsoleApp7
         String nazwisko;
         String stanowisko;
         int pensja;
+        public Pracownik(String imie, String nazwisko,String stanowisko,int pensja)
+        {
+            this.imie = imie;
+            this.nazwisko = nazwisko;
+            this.stanowisko = stanowisko;
+            this.pensja = pensja;
+        }
     }
     public class Projekt
     {
         String nazwa;
         Pracownik kierownik;
         List<Pracownik> zespol = new List<Pracownik> ();
+        public Projekt(String nazwa,Pracownik kierownik)
+        {
+            this.nazwa = nazwa;
+            this.kierownik = kierownik;
+
+        }
 
     }
     public class KierownikProjektu:Pracownik
     {
+        public KierownikProjektu(String imie, String nazwisko, String stanowisko, int pensja):base(imie,nazwisko,stanowisko,pensja)
+        {
+
+        }
 
     }
     public class Programista : Pracownik
     {
+        public Programista(String imie, String nazwisko, String stanowisko, int pensja) : base(imie, nazwisko, stanowisko, pensja)
+        {
+
+        }
 
     }
     public class ScrumMaster:Pracownik
     {
+        public ScrumMaster(String imie, String nazwisko, String stanowisko, int pensja) : base(imie, nazwisko, stanowisko, pensja)
+        {
+
+        }
 
     }
 }
+
