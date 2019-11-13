@@ -31,6 +31,12 @@ namespace ConsoleApp7
             this.stanowisko = stanowisko;
             this.pensja = pensja;
         }
+        public bool toString()
+        {
+
+            Console.WriteLine(this.imie + " " + this.nazwisko);
+            return true;
+        }
     }
     public class Projekt
     {
@@ -73,5 +79,6 @@ namespace ConsoleApp7
 
     }
 }
+
 
 
