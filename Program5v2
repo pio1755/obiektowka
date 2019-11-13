@@ -1,0 +1,37 @@
+using System;
+
+namespace lista6
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            Console.ReadKey();
+        }
+    }
+    public abstract class Figura
+    {
+        protected int a=3;
+        protected int b=4;
+        protected int c=5;
+        public abstract void Pole();
+
+    }
+    public class Kwadrat: Figura
+    {
+
+        public override void Pole()
+        {
+            Console.WriteLine("Pole wynosi " + a * a);
+        }
+    }
+    public class Trojkat: Figura
+    {
+        public override void Pole()
+        {
+            Console.WriteLine("Pole wynosi: " + 1 / 2 * a * b);
+        }
+
+    }
+}//zrogione na szybko bez obj, mozna poprawic na mozliwosc dodawania zmiennych
