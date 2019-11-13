@@ -1,0 +1,91 @@
+using System;
+using System.Collections.Generic;
+
+namespace ConsoleApp6
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Firma Nowa = new Firma();
+            Dyrektor jeden = new Dyrektor("Albert","XYZ");
+            Sekretarka dwa = new Sekretarka("Once", "xxxdd");
+            Mechanik trzy = new Mechanik("mechan", "piertekPato");
+
+        }
+    }
+    public abstract class Osoba
+    {
+        public String Imie;
+        public String Nazwisko;
+        public Osoba(String imie,String nazwisko)
+        {
+            this.Imie = imie;
+            this.Nazwisko = nazwisko;
+        }
+            
+
+        void Pracuj()
+        {
+
+        }
+        void Przygotuj_kawe()
+        {
+            Console.WriteLine("Obiekt Imie Nazwisko parzy kawę.");
+        }
+    }
+    class Firma
+    {
+        public List<Osoba> pracownicy=new List<Osoba>();
+    }
+    class Dyrektor : Osoba
+    {
+        public Dyrektor(String imie, String nazwisko):base(imie,nazwisko)
+        {
+
+        }
+        String sekretarka = "";
+        void PrzypiszSekretarke(Sekretarka ona)
+        {
+            this.sekretarka = (ona.Imie+""+ona.Nazwisko);
+        }
+        void Przygotuj_kawe()
+        {
+            if (sekretarka == "")
+            {
+                Console.WriteLine("Dyrektor "+ this.Imie +""+this.Nazwisko+ " robi kawe" );
+            }
+            else
+            {
+                Console.WriteLine("Sekretarka"+" " + sekretarka + " robi kawe");
+            }
+        }
+
+    }
+    class Sekretarka : Osoba
+    {
+        public Sekretarka(String imie, String nazwisko) : base(imie, nazwisko)
+        {
+
+        }
+        void Przygotuj_kawe()
+        {
+                Console.WriteLine("Sekretarka "+ this.Imie +""+this.Nazwisko+ " robi kawe" );
+        }
+
+
+
+}
+    class Mechanik : Osoba
+    {
+        public Mechanik(String imie, String nazwisko) : base(imie, nazwisko)
+        {
+
+        }
+        void Przygotuj_kawe()
+        {
+            Console.WriteLine("Mechanik " + this.Imie + "" + this.Nazwisko + " robi kawe");
+        }
+    }
+
+}
