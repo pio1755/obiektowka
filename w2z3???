@@ -1,0 +1,39 @@
+using System;
+using System.Collections.Generic;
+
+namespace ConsoleApp7
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Hello World!");
+        }
+    }
+    public abstract class Pracownik
+    {
+        String imie;
+        String nazwisko;
+        String stanowisko;
+        int pensja;
+    }
+    public class Projekt
+    {
+        String nazwa;
+        Pracownik kierownik;
+        List<Pracownik> zespol = new List<Pracownik> ();
+
+    }
+    public class KierownikProjektu:Pracownik
+    {
+
+    }
+    public class Programista : Pracownik
+    {
+
+    }
+    public class ScrumMaster:Pracownik
+    {
+
+    }
+}
