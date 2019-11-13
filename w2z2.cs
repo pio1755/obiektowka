@@ -77,9 +77,9 @@ namespace Wejsciowka3
         static void Main(string[] args)
         {
             Firma listapracownikow = new Firma();
-            Sekretarka Ola = new Sekretarka("Ola", "Skorupska");
-            Dyrektor Bartosz = new Dyrektor("Bartosz", "Kwasiborski");
-            Mechanik Kisiel = new Mechanik("Michał", "Kisiel");
+            Sekretarka Ola = new Sekretarka("Ola", "Xyz");
+            Dyrektor Bartosz = new Dyrektor("Bartosz", "Bartoszewski");
+            Mechanik Kisiel = new Mechanik("Michał", "Budyń");
             //Bartosz.PrzypiszSekretarke(Ola);
             Bartosz.PrzygotujKawe();
             Kisiel.PrzygotujKawe();
