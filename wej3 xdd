@@ -15,7 +15,7 @@ namespace wejs3
             Rower row1 = new Rower("row1");
             Rower row2 = new Rower("row2");
 
-            Queue<Pojazd> kolejka = new Queue<Pojazd>;
+            Queue<Pojazd> kolejka = new Queue<Pojazd>();
             kolejka.Enqueue(sam1);
             kolejka.Enqueue(sam2);
             kolejka.Enqueue(row1);
@@ -23,9 +23,14 @@ namespace wejs3
 
             while(kolejka.Count>0)
             {
-                if(Kolejka)
-                Console.WriteLine(kolejka.Dequeue());
+                int i = 0;
+                List<Pojazd> lista = new List<Pojazd>();
+                lista.Add(kolejka.Peek());
+                if(kolejka.Peek() is Rower)
+                    lista<i>.
 
+
+                    i++
             }
 
 
