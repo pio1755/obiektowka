@@ -1,0 +1,83 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace wejs3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Samochod sam1 = new Samochod("sam1");
+            Samochod sam2 = new Samochod("sam2");
+            Rower row1 = new Rower("row1");
+            Rower row2 = new Rower("row2");
+
+            Queue<Pojazd> kolejka = new Queue<Pojazd>;
+            kolejka.Enqueue(sam1);
+            kolejka.Enqueue(sam2);
+            kolejka.Enqueue(row1);
+            kolejka.Enqueue(row2);
+
+            while(kolejka.Count>0)
+            {
+                if(Kolejka)
+                Console.WriteLine(kolejka.Dequeue());
+
+            }
+
+
+        }
+    }
+    public abstract class Pojazd
+    {
+        protected string nazwa;
+        
+        public Pojazd(string nazwa)
+        {
+            this.nazwa = nazwa;
+        }
+
+       public string Jedz()
+        {
+           return this.GetType().Name + " jedzie!";
+
+        }
+    }
+    interface ISkladany
+    {
+        void Zloz();
+        void Rozloz();
+
+    }
+
+    public class Rower : Pojazd, ISkladany
+    {
+        public Rower(string nazwa): base(nazwa)
+        {
+
+        }
+        public void Rozloz()
+        {
+            {
+                Console.WriteLine("Rozkladam "+this.GetType().Name);
+
+            }
+        }
+
+        public void Zloz()
+        {
+            Console.WriteLine("Skladam " + this.GetType().Name);
+        }
+    }
+    public class Samochod : Pojazd
+    {
+        public Samochod(string nazwa):base(nazwa)
+        {
+
+        }
+
+    }
+}
