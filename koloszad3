@@ -1,0 +1,190 @@
+using System;
+
+namespace kolosZ3
+{
+    class Program
+    {
+
+        static void Main(string[] args)
+        {
+            Lody galka = new Galkowe();
+            galka = new cytrynowa(galka);
+            Lody wloch = new Wloskie(smak.Śmietankowe);
+            wloch = new czekolada(wloch);
+    }
+}
+    public abstract class Lody
+    {
+        public abstract String nazwa();
+        public abstract double cena();
+
+    }
+    public enum smak {Śmietankowe, Czekoladowe };
+
+    public class Wloskie : Lody
+    {
+
+
+        public smak smak { get; set; }
+        public Wloskie(smak smak)
+        {
+            this.smak = smak;
+        }
+
+        public override String nazwa()
+        {
+            return "wloskie";
+        }
+        public override double cena()
+        {
+            return 3.50;
+        }
+    }
+    public class Galkowe : Lody
+    {
+        public override String nazwa()
+        {
+            return "Gałkowe";
+        }
+        public override double cena()
+        {
+            return 1.50;
+        }
+    }
+    public class LodyDekorator : Wloskie()
+    {
+        protected Lody _lody;
+
+        public LodyDekorator(Lody lody)
+        {
+            _lody = lody;
+        }
+        public override String nazwa()
+        {
+            return _lody.nazwa();
+        }
+        public override double cena()
+        {
+            return _lody.cena();
+        }
+
+    }
+    public class czekolada : LodyDekorator
+    {
+        public czekolada(Lody lody) : base(lody)
+        {
+        }
+        public override double cena()
+        {
+            return base.cena()+0.5;
+        }
+        public override string nazwa()
+        {
+            return base.nazwa() + " ,z czekoladą ";
+        }
+    }
+    public class polewa_owocowa : LodyDekorator
+    {
+        public polewa_owocowa(Lody lody) : base(lody)
+        {
+        }
+        public override double cena()
+        {
+            return base.cena()+0.8;
+        }
+        public override string nazwa()
+        {
+            return base.nazwa() + " ,z polewą owocową ";
+        }
+    }
+    public class kolorowa_posypka : LodyDekorator
+    {
+        public kolorowa_posypka(Lody lody) : base(lody)
+        {
+        }
+        public override double cena()
+        {
+            return base.cena() + 0.5;
+        }
+        public override string nazwa()
+        {
+            return base.nazwa() + " ,z kolorową posypką ";
+        }
+    }
+    public class LodyDekorator2 : Galkowe
+    {
+        protected Lody _lody;
+
+        public LodyDekorator2(Lody lody)
+        {
+            _lody = lody;
+        }
+        public override String nazwa()
+        {
+            return _lody.nazwa();
+        }
+        public override double cena()
+        {
+            return _lody.cena();
+        }
+
+    }
+    public class cytrynowa : LodyDekorator2
+    {
+        public cytrynowa(Lody lody) : base(lody)
+        {
+        }
+        public override double cena()
+        {
+            return base.cena();
+        }
+        public override string nazwa()
+        {
+            return base.nazwa() + " ,cytrynowe ";
+        }
+    }
+    public class smietankowa : LodyDekorator2
+    {
+        public smietankowa(Lody lody) : base(lody)
+        {
+        }
+        public override double cena()
+        {
+            return base.cena();
+        }
+        public override string nazwa()
+        {
+            return base.nazwa() + " ,śmietankowe ";
+        }
+    }
+    public class bakaliowa : LodyDekorator2
+    {
+        public bakaliowa(Lody lody) : base(lody)
+        {
+        }
+        public override double cena()
+        {
+            return base.cena();
+        }
+        public override string nazwa()
+        {
+            return base.nazwa() + " ,bakaliowe ";
+        }
+    }
+    public class morelowa : LodyDekorator2
+    {
+        public morelowa(Lody lody) : base(lody)
+        {
+        }
+        public override double cena()
+        {
+            return base.cena();
+        }
+        public override string nazwa()
+        {
+            return base.nazwa() + " ,morelowe ";
+        }
+    }
+
+
+}
