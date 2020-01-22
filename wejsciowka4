@@ -1,0 +1,126 @@
+using System;
+using System.Collections.Generic;
+
+namespace Probny_kolos1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            Pilkarz p1 = new Pilkarz("Ola", "Skorupska");
+            Pilkarz p2 = new Pilkarz("Bartosz", "Kwasiborski");
+            Pilkarz p3 = new Pilkarz("Oliwia", "Malon");
+            Agent a1 = new Agent("Jacek", "Szypulski", 3);
+            Agent a2 = new Agent("Bartłomiej", "Łopak", 7);
+            p1.RegisterObserver(a1);
+            p1.RegisterObserver(a2);
+            p2.RegisterObserver(a1);
+            p2.RegisterObserver(a2);
+            p3.RegisterObserver(a1);
+            p3.RegisterObserver(a2);
+
+            p1.AddGoals(4);
+            p2.AddGoals(10);
+            p3.AddGoals(69);
+
+            Console.WriteLine(p1.ToString());
+
+            Console.ReadKey();
+        }
+    }
+    interface IObserver
+    {
+        void Update(Pilkarz o);
+    }
+
+    interface IObservable
+    {
+        void RegisterObserver(IObserver observer);
+        void UnregisterObserver(IObserver observer);
+        void NotifyObservers();
+    }
+
+    class Agent : IObserver
+    {
+        private List<Pilkarz> Shortlista;
+        private string Imie;
+        private string Nazwisko;
+        private int goalsLimit;
+
+        public Agent(string imie, string nazwisko, int _goalsLimit)
+        {
+            Imie = imie;
+            Nazwisko = nazwisko;
+            goalsLimit = _goalsLimit;
+            this.Shortlista = new List<Pilkarz>();
+        }
+
+        public void Update(Pilkarz o) 
+        {
+            if (o.gole() >= this.goalsLimit)
+            {
+                if(Shortlista.Contains(o))
+                {
+                    Console.WriteLine("Już jest xd");
+                }
+                else
+                {
+                    Shortlista.Add(o);
+                    Console.WriteLine("dodano do listy");
+
+                }
+            }
+        }
+
+    }
+
+
+
+
+    class Pilkarz : IObservable
+    {
+        private int goals;
+        public string Imie { get; set; }
+        public string Nazwisko { get; set; }
+        private List<IObserver> Obserwatorzy;
+
+        public Pilkarz(string _imie, string _nazwisko)
+        {
+            this.Imie = _imie;
+            this.Nazwisko = _nazwisko;
+            this.Obserwatorzy = new List<IObserver>();
+        }
+        public int gole()
+        {
+            return this.goals;
+        }
+        public void AddGoals(int goals)
+        {
+             this.goals+=goals;
+            ToString();
+            foreach (var item in Obserwatorzy)
+            {
+                item.Update(this);
+            }
+        }
+
+        public void NotifyObservers()
+        {
+        }
+
+        public void RegisterObserver(IObserver observer)
+        {
+            Obserwatorzy.Add(observer);
+        }
+
+        public void UnregisterObserver(IObserver observer)
+        {
+        }
+        public override string ToString()
+        {
+            return "Piłkarz: " + this.Imie + " " + this.Nazwisko + " " + "Liczba goli: " + this.goals ;
+        }
+    }
+
+}
