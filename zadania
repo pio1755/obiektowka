@@ -1,0 +1,361 @@
+z1
+
+using System;
+using System.Collections.Generic;
+
+namespace Po_Kol_PiotrKosinski
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Ciezarowka c1 = new Ciezarowka(5, "c1");
+            Ciezarowka c2 = new Ciezarowka(3, "c2");
+            Osobowy o1 = new Osobowy(1, "o1");
+            Osobowy o2 = new Osobowy(2, "o1");
+
+            Prom p1 = new Prom(7);
+
+            p1.ZaladujPojazd(c1);
+            p1.ZaladujPojazd(c2);
+
+
+
+            Console.ReadKey();
+        }
+    }
+
+
+
+    public abstract class Pojazd
+    {
+        double Masa;
+        string Nazwa;
+        public Pojazd(double masa, string nazwa)
+        {
+            this.Masa = masa;
+            this.Nazwa = nazwa;
+        }
+        public double pmasa()
+        {
+            return this.Masa;
+        }
+        public void zmasa(double masa)
+        {
+            Masa += masa;
+        }
+    }
+
+    public class Ciezarowka : Pojazd
+    {
+        public Ciezarowka(double m, string n) : base(m, n)
+        {
+
+        }
+
+    }
+    public class Osobowy : Pojazd
+    {
+        public Osobowy(double m, string n) : base(m, n)
+        {
+
+        }
+    }
+    class Prom
+    {
+        private double ladownosc;
+        private double masaPojazdow=0;
+        private List<Pojazd> pojazdy = new List<Pojazd>();
+        private bool zaladowany = false;
+        public Prom(double l)
+        {
+            this.ladownosc = l;
+            
+
+        }
+
+        public double MasaZaladowanychPojazdow()
+        {
+            return masaPojazdow;
+        }
+        public void WyladujPojazd(Pojazd p)
+        {
+            pojazdy.Remove(p);
+            zMase(-p.pmasa());
+        }
+        public void ZaladujPojazd(Pojazd p)
+        {
+            if (p.pmasa() + MasaZaladowanychPojazdow() < ladownosc)
+            {
+                pojazdy.Add(p);
+                zMase(p.pmasa());
+            }
+            else
+            {
+                zaladowany = true;
+                throw new ArgumentException("Masa pojazdu przekracza dozwoloną ładowność");
+            }
+            
+
+
+        }
+        public void zMase(double nowa)
+        {
+            masaPojazdow += nowa;
+        }
+
+
+    }
+public class WyczerpanaLadownosc
+    {
+        public WyczerpanaLadownosc(string message)
+        {
+
+
+
+        }
+
+    }
+}
+
+
+z2
+
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+
+namespace zadanie2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Pracownik p1 = new Pracownik("Alan", "Kwasnik", 235454321, 1500, 32);
+            Pracownik p2 = new Pracownik("Daniel", "Poloniusz", 954323423, 2500, 54);
+
+            Pracownik p3 = new Pracownik("Krzysztof", "Kowalski", 53453425, 1200, 34);
+
+            Pracownik p4 = new Pracownik("Bartek", "Kolos", 532425234, 1700, 66);
+
+            Pracownik p5 = new Pracownik("Dariusz", "Xdd", 532425239, 2900, 54);
+            Firma f1 = new Firma();
+            f1.dodaj(p1);
+            f1.dodaj(p2);
+            f1.dodaj(p3);
+            f1.dodaj(p4);
+            f1.dodaj(p5);
+
+            Dictionary<int,double> sl;
+
+            sl = f1.PobierzPracownikowZPensjaMniejszaNiz(1600);
+
+            foreach (KeyValuePair<int, double> para in sl)
+            {
+                Console.WriteLine(String.Format("Pesel: {0}   Liczba: {1}", para.Key, para.Value));
+            }
+
+
+            Console.ReadKey();
+        }
+    }
+    public class Pracownik
+    {
+        public string Imie;
+        public string Nazwisko;
+        public int Pesel;
+        public double Pensja;
+        public int Wiek;
+        public Pracownik(string im,string nazw,int Pes,double p, int w)
+        {
+            this.Imie = im;
+            this.Nazwisko = nazw;
+            this.Pesel = Pes;
+            this.Pensja = p;
+            this.Wiek = w;
+            
+
+        }
+    }
+    public class Firma
+    {
+        public List<Pracownik> pracownicy = new List<Pracownik>();
+
+        public void dodaj(Pracownik p)
+        {
+            pracownicy.Add(p);
+
+        }
+        public Dictionary<int,double> PobierzPracownikowZPensjaMniejszaNiz(double p)
+        {
+            Dictionary<int, double> slownik =new Dictionary<int, double>();
+
+            foreach (var item in pracownicy)
+            {
+                if(item.Pensja<p)
+                    slownik.Add(item.Pesel,item.Pensja);
+            }
+            return slownik;
+        }
+
+
+    }
+}
+   
+   
+   
+   
+   z3
+   
+   
+   
+   using System;
+using System.Collections.Generic;
+
+namespace Program
+{
+    public interface IObservator
+    {
+        void update(Powiadomienie p);
+    }
+    public interface IObservable
+    {
+        void attach(IObservator o);
+        void dettach(IObservator o);
+        void notify(Powiadomienie p);
+    }
+    public abstract class Powiadomienie
+    {
+        public abstract string GetWiadomosc();
+
+    }
+    public class PowiadomienieOpis : Powiadomienie
+    {
+        public string opis;
+        public PowiadomienieOpis(string o)
+        {
+            this.opis = o;
+        }
+        public override string GetWiadomosc()
+        {
+            return "Nowy Opis: " + opis + "\n";
+        }
+    }
+    public class PowiadomienieCena : Powiadomienie
+    {
+        public double cena;
+        public PowiadomienieCena(double c)
+        {
+            this.cena = c;
+        }
+        public override string GetWiadomosc()
+        {
+            return "Nowa Cena: " + cena.ToString() + "\n";
+        }
+    }
+    public class PowiadomienieDataZakonczenia : Powiadomienie
+    {
+        public DateTime DataZakonczenia;
+        public PowiadomienieDataZakonczenia(DateTime d)
+        {
+            this.DataZakonczenia = d;
+        }
+        public override string GetWiadomosc()
+        {
+            return "Nowa Data zakończenia: " + DataZakonczenia.ToString() + "\n";
+        }
+    }
+    public class Klient : IObservator
+    {
+        public string Nazwa;
+        public Klient(string n)
+        {
+            this.Nazwa = n;
+        }
+        public void update(Powiadomienie p)
+        {
+            Console.Write(p.GetWiadomosc());
+        }
+    }
+    public class Aukcja : IObservable
+    {
+        public int id;
+        public double cena;
+        public string Opis;
+        public DateTime DataZakonczenia;
+        public List<IObservator> lista_o;
+        public Aukcja(int id, double c, string o, DateTime d)
+        {
+            this.id = id;
+            this.cena = c;
+            this.Opis = o;
+            this.DataZakonczenia = d;
+            this.lista_o = new List<IObservator>();
+        }
+        public void attach(IObservator o)
+        {
+            lista_o.Add(o);
+        }
+        public void dettach(IObservator o)
+        {
+            int index = lista_o.IndexOf(o);
+            lista_o.RemoveAt(index);
+        }
+        public void notify(Powiadomienie p)
+        {
+            foreach (var item in lista_o)
+            {
+                item.update(p);
+            }
+        }
+        public void zmianaCeny(double c)
+        {
+            if (c != this.cena)
+            {
+                var pow = new PowiadomienieCena(c);
+                notify(pow);
+            }
+            else
+                Console.Write("Cena nie uległa zmianie");
+        }
+        public void zmianaOpisu(string o)
+        {
+            if (o != this.Opis)
+            {
+                var pow = new PowiadomienieOpis(o);
+                notify(pow);
+            }
+            else
+                Console.Write("Opis nie uległ zmianie");
+        }
+        public void zmianadaty(DateTime d)
+        {
+            if (d != this.DataZakonczenia)
+            {
+                var pow = new PowiadomienieDataZakonczenia(d);
+                notify(pow);
+            }
+            else
+                Console.Write("Data nie uległa zmianie");
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Klient k1 = new Klient("Janek");
+            Aukcja a1 = new Aukcja(1, 15.99, "Fajna aukcja", new DateTime(2012, 2, 2));
+            Powiadomienie cena = new PowiadomienieCena(a1.cena);
+            Powiadomienie opis = new PowiadomienieOpis(a1.Opis);
+            Powiadomienie date = new PowiadomienieDataZakonczenia(a1.DataZakonczenia);
+            a1.attach(k1);
+            Console.Write("Cena: " + a1.cena + " Opis: " + a1.Opis + " Data zakończenia: " + a1.DataZakonczenia + "\n");
+            a1.zmianaCeny(14.99);
+            a1.zmianaOpisu("Niefajna aukcja");
+            a1.zmianadaty(new DateTime(2012, 2, 2));
+
+            Console.ReadKey();
+        }
+    }
+}
